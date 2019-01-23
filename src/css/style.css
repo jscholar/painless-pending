@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+.container {
+    background-color: rgba(211, 211, 211, 0.986);
+    height: 100%;
+}
+
+.old, .new {
+    height: 50%;
+    padding: 10px;
+    width: 40%;
+}
+
+
+/* Input textarea elements */
+.input-old, .input-new {
+    height: 90%;
+    width: 90%;
+    resize: none;
+}
