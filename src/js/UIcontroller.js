@@ -6,8 +6,8 @@ let rules = {
 }
 
 export const elements = {
-    inputOld: document.querySelector('.prev-text'),
-    inputNew: document.querySelector('.curr-text'),
+    inputPrevious: document.querySelector('.prev-text'),
+    inputCurrent: document.querySelector('.curr-text'),
     result: document.querySelector('.result-text'),
     readOldButton: document.querySelector('.getOld'),
     copyButton: document.querySelector('.copy')
@@ -17,7 +17,7 @@ export const elements = {
  *   Output: [oldtext, newtext]
 */
 export const readInput = () => {
-    return [elements.inputOld.value, elements.inputNew.value];
+    return [elements.inputPrevious.value, elements.inputCurrent.value];
 }
 
 export const displayResults = (currentPending) => {

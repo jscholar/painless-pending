@@ -12,26 +12,23 @@ let pendings = {
 let exp = {
     regex: {
         specID: /\d\d\d-\d\d\d-\d\d\d\d-\d/,
-        res: /(?<=>).+(\n*.*)*/,
+        res: />(.+(\n*.*)*$)/,
         wks: /^\d\d\d\d(?!-|\d)/,
-        specBreak: /(?<=\n)N,/,
+        specBreak: /\nN,   /,
         line: /.+<\w\/\d{1,}>/,
-        wksBreak: /(?<=\n).+WS #/,
+        wksBreak: /.+WS #/,
     }
 }
 
 
 export const buildPending = (text, type) => {
     clearPendings();
-
     let wksList = splitWS(text);
-
+    console.log(wksList);
     wksList.forEach((list) => {
 
         const wks = list[0].match(exp.regex.wks)[0];
-
         list.forEach((line) => {
-            console.log(line);
             const specParams = parseLine(line);
             if (specParams) {
                 addSpecs(wks, specParams, type);
@@ -45,19 +42,24 @@ export const buildPending = (text, type) => {
 /** Splits raw text into WS's
  * Text => [ [wks], [wks], [wks] ]
  */
-const splitWS = (text) => 
-    text.split(exp.regex.wksBreak).slice(1)
+const splitWS = (text) => {
+    text = text.split(exp.regex.wksBreak).slice(1)
     .map((ws) => 
          ws.split(exp.regex.specBreak)
         .map((line) => line.trim())
-);
+    )
+    return text;
+    };
 
 
 const addSpecs = (wks, specParams, type) => {
     if (!(wks in pendings[type])) {
         pendings[type][wks] = [];
     }
-    pendings[type][wks].push(new Specimen(...specParams, wks));
+    if (!pendings[type][wks].find((spec) => specParams[0] === spec.specID)) {
+        pendings[type][wks].push(new Specimen(...specParams, wks));
+    }
+
 }
 
 /** Returns Specimen Parameters as [specID, jul, resolution, line] */
@@ -72,7 +74,8 @@ const parseLine = (line) => {
     const jul = specID.substring(0,3);
 
     let res = line.match(exp.regex.res);
-    res = res ? res[0] : null;
+    console.log(res);
+    res = res ? res[1] : null;
 
     line = line.match(exp.regex.line)[0];
 

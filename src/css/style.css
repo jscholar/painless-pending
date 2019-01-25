@@ -42,7 +42,7 @@ body {
 }
 
 .prev-text::placeholder, .curr-text::placeholder {
-    font-size: 1.5em;
+    font-size: 1.1em;
 }
 .result {
     height: 80%;
@@ -61,4 +61,14 @@ body {
     overflow: scroll;
     font-size: 13px;
     font-family: "r_ansi";
+}
+
+.log {
+    margin: 50px 0 50px;
+    min-width: 500px;
+    width: 60%;
+}
+
+li {
+    white-space: pre-wrap;
 }
