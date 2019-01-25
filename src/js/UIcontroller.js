@@ -13,6 +13,29 @@ export const elements = {
     copyButton: document.querySelector('.copy')
 }
 
+export const initUI = () => {
+    elements.inputPrevious.placeholder += 
+    `
+
+
+
+
+   Example:
+
+    10-SEP-2018       WS # 1157 FECAL FAT SCREN - 5 Pending Build                   
+    Status  Specimen #      Account# Patient Name <Sex/Age>
+   ------  --------------  -------- ------------------------------
+   N,      555-555-5555-0  55555555 PATIENT,PATIENT <?,??> ASDF | 1234
+   N,      555-555-5555-0  55555555 PATIENT,PATIENT <?,??> ASDF | 1234
+
+    10-SEP-2018     WS # 3249 GI PROFILE STOOL PCR - 2 Pending Build                
+    Status  Specimen #      Account# Patient Name <Sex/Age>
+   ------  --------------  -------- ------------------------------
+   N,      555-555-5555-0  55555555 PATIENT,PATIENT <?,??> ASDF | 1234
+   N,      555-555-5555-0  55555555 PATIENT,PATIENT <?,??> ASDF | 1234
+    `
+}
+
 /**  Returns value of pending inputs 
  *   Output: [oldtext, newtext]
 */
@@ -46,7 +69,7 @@ const createElement = (spec) => {
     let newLine = document.createElement("span");
     // newLine.classList.add("line");
     let newText = document.createTextNode(
-        `N,   ${spec.line} ${spec.res ? spec.res : ''}`
+        templates.genPendLine(spec.line, spec.res ? spec.res : '')
     );
 
     newLine.appendChild(newText);
