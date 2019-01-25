@@ -3,18 +3,32 @@
  */
 
 import './css/style.css'
-import { elements, readOld } from './js/UIcontroller'
-import { parsePending } from './js/parser'
+import { elements, readInput, copyResults, displayResults } from './js/UIcontroller'
+import { buildPending } from './js/parser'
+import { updatePending } from './js/updater'
 
-// Setup event handlers
+/*  Setup event handlers */
  {
      elements.readOldButton.addEventListener('click', processText)
+     elements.copyButton.addEventListener('click', copyResults)
  }
 
 function processText() {
-    // Get text from input
-    let oldText = readOld();
-    
-    // Parse text
-    parsePending(oldText);
+    let [previousPending, currentPending] = [{}, {}];
+
+    /* Get text from input */
+    let [oldText, newText] = readInput();
+
+    if (oldText.length && newText.length) {
+
+        /* Get Pendings object */
+        previousPending = buildPending(oldText, 'previous');
+        currentPending = buildPending(newText, 'current');
+            /* Update current pendings with previous resolutions */
+        updatePending(previousPending, currentPending);
+
+        displayResults(currentPending);
+    } else {
+        console.log('no input received');
+    }
 }

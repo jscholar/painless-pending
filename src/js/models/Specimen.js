@@ -1,12 +1,9 @@
 export class Specimen {
-    constructor(specID, wks, line, res) {
-        this.specID = specID,
-        this.woks = wks,
-        this.line = line,
-        this.res = res
+    constructor(specID, jul, res = "", line, wks) {
+        this.specID = specID;
+        this.jul = jul;
+        this.res = res;
+        this.line = line;
+        this.wks = wks;
     }
-
-    getRes = () => this.res;
-
-    addRes = (res) => this.res = res;
 }
