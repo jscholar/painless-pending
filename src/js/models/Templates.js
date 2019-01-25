@@ -5,7 +5,7 @@ export const Templates = {
     ------  --------------  -------- ------------------------------`
     },
 
-    genPendLIne: function(line, res) {
-        return `${line} ${res}`
+    genPendLine: function(line, res) {
+        return `N,   ${line} ${res}`
     }
 }
