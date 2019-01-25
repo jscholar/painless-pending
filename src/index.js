@@ -11,7 +11,6 @@ import { updatePending } from './js/updater'
  {
      init();
      elements.readOldButton.addEventListener('click', processText)
-     elements.copyButton.addEventListener('click', copyResults)
  }
 
 function processText() {
