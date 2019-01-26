@@ -8,52 +8,44 @@
 </head>
 <body>
     <div class="container">
-        <div class="input">
+        <div class='top'>
+            <h1>Painless Pending</h1>
+        </div>
+        <div class="pending-wrapper">
 
-            <div class="prev">
-                <textarea class="prev-text" placeholder="// Paste previous pending here"></textarea>
+            <div class="input">
+
+                <div class="prev">
+                    <textarea class="prev-text" placeholder="// Paste previous pending here"></textarea>
+                </div>
+
+                <div class="curr">
+                    <textarea class="curr-text" placeholder="// Paste current pending here"></textarea>
+                </div>
+
             </div>
 
-            <div class="curr">
-                <textarea class="curr-text" placeholder="// Paste current pending here"></textarea>
+            <div class="result">
+                <div class='result-text'></div>
+                <div class='filters'>
+                    <div class="filter-display">
+
+                    </div>
+                    <div class="filter-controller">
+
+                    </div>
+                </div>
             </div>
-
         </div>
-
-        <div class="result">
-            <div class='result-text'></div>
+        <div>
+                <button class="updatePendingBtn">Update Pending</button>
         </div>
-        <button class="getOld">PREVIOUS => CURRENT</button>
-
         <div class="log">
-            <h1>Log</h1>
-            <br>
-            <p id="1.0">
-                <h2>Version 1.0 (1/25)</h2>
-                <ul>
-                    <li>To prevent any issues, adhere to the usual procedure for resolveing pending specimens.
-Enter resolutions at the end of lines. Multi- Line resolutions are support.
-                    <div style="background-color: #EEEEEE; width: 800px; height: 130px; border: rgb(92, 190, 1) solid 5px">
-    N,      555-555-5555-0  55555555 PATIENT,PATIENT &ltM/999&gt WRONG, ASDF | 1234
-
-    N,      555-555-5555-0  55555555 PATIENT,PATIENT &ltM/999&gt WRONG,
-                                                                                                             DRY
-                    </div>
-
-                    <div style="background-color: #EEEEEE; width: 800px; height: 130px; border: rgb(202, 26, 26) solid 5px">
-    WRONG N,      555-555-5555-0  55555555 PATIENT,PATIENT &ltM/999&gt &ltASDF&gt
-
-    N,      555-555-5555-0  55555555 PATIENT,PATIENT  WRONG &ltM/999&gt,
-                    </div>
-
-                    </li>
-                    <li>Painless pending is NOT guaranteed to work with any format other than the one printed from the standard pending list.
-Any edits or modifications to the original CAN affect the validity of outputted pending list.
-                    </li>
-                </ul>
-            </p>
-
-        </div>
+                <h2>
+                    Log
+                </h2>
+            </div>
     </div>
+
 </body>
 </html>
