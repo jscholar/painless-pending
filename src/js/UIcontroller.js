@@ -1,5 +1,4 @@
-import {genWKSHeader, UITemplates} from './models/Templates'
-import specHandler from './specHandler'
+import { genWKSHeader, UITemplates } from './models/Templates'
 
 /** Highlighting rules */
 
@@ -24,9 +23,12 @@ export const getJulianInput = () => {
     }
 }
 
-export const initUI = () => {
+export const initUI = (julRange) => {
     document.querySelector('body').classList.remove("preload");
     elements.inputPrevious.placeholder += UITemplates.inputPlaceHolder;
+
+    updateJulDisplay(julRange);
+
 }
 
 /**  Returns value of pending inputs 
@@ -36,26 +38,17 @@ export const readInput = () => {
     return [elements.inputPrevious.value, elements.inputCurrent.value];
 }
 
-export const displayResults = (state, currentPending) => {
-    clearResultsDisplay();
-    for (let wks in currentPending) {
-
-        /** Display wks header */
-        const header = genWKSHeader('---', wks, currentPending[wks].length);
-        elements.result.insertAdjacentHTML('beforeend', `<div>${header}</div>`)
-
-        currentPending[wks].forEach( (spec) => {
-            let el = specHandler(spec, rules);
-            if (el) {
-                elements.result.insertAdjacentElement('beforeend', el);
-                elements.result.insertAdjacentHTML('beforeend', `<br>`)
-            }
-        })
-
-        elements.result.insertAdjacentHTML('beforeend', `<br>`)
-    }
+export const printPendingLine = (el) => {
+    elements.result.insertAdjacentElement('beforeend', el);
+    elements.result.insertAdjacentHTML('beforeend', `<br>`)
 }
 
+export const printWKSHeader = (wks, length) => {
+    elements.result.insertAdjacentHTML('beforeend', `<br>`)
+        /** Display wks header */
+    const header = genWKSHeader('---', wks, length);
+    elements.result.insertAdjacentHTML('beforeend', `<div>${header}</div>`)
+}
 
 export const invalidInput= () => {
     clearResultsDisplay();
@@ -68,30 +61,13 @@ export const copyResults = () => {
      */
 }
 
-export const formatJul = (e) => {
-    if (e.value < 1) {
-        e.value = 1;
-    }
-    e.value = ("000" + e.value).slice(-3);
-}
-
-const fillDays = () => {
-    if (rules.julRange.begin > rules.julRange.end) {
-        rules.julRange.days = (365 - rules.julRange.begin) + rules.julRange.end;
-    } else {
-        rules.julRange.days = rules.julRange.end - rules.julRange.begin;
-    }
-}
-
-const fillBegin = () => {
-    rules.julRange.begin = rules.julRange.end - rules.julRange.days <= 0 ? 
-    365 - (rules.julRange.days - rules.julRange.end ) :
-    rules.juleRange.end - rules.juleRange.days;
-}
-
-
-
-const clearResultsDisplay = () => {
+export const clearResultsDisplay = () => {
     elements.result.innerHTML = "";
 }
 
+export const updateJulDisplay = (julRange) => {
+    formatJul(elements.julBeginInput, julRange.begin);
+    formatJul(elements.julEndInput, julRange.end);
+}
+
+export const formatJul = (e, jul) => e.value = jul ? ("000" + jul).slice(-3) : null;

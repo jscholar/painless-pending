@@ -1,8 +1,8 @@
 
-export const updatePending = (previousPending, currentPending) => {
-    for (let wks in currentPending) {
-        currentPending[wks].forEach( (spec) =>
-            updateSpecimen(previousPending, currentPending, wks, spec)
+export const updatePending = (pending) => {
+    for (let wks in pending.curr) {
+        pending.curr[wks].forEach( (spec) =>
+            updateSpecimen(pending.prev, pending.curr, wks, spec)
         ) 
     }
 }
