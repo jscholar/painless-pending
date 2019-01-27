@@ -15,7 +15,7 @@ let exp = {
         res: />(.+(\n*.*)*$)/,
         wks: /^\d\d\d\d(?!-|\d)/,
         specBreak: /\nN,   /,
-        line: /.+<\w\/\d{1,}>/,
+        line: /.+\w\/\d+>*/,
         wksBreak: /.+WS #/,
     }
 }
@@ -24,7 +24,6 @@ let exp = {
 export const buildPending = (text, type) => {
     clearPendings();
     let wksList = splitWS(text);
-    console.log(wksList);
     wksList.forEach((list) => {
 
         const wks = list[0].match(exp.regex.wks)[0];
@@ -74,9 +73,10 @@ const parseLine = (line) => {
     const jul = specID.substring(0,3);
 
     let res = line.match(exp.regex.res);
+    console.log(res);
     res = res ? res[1] : null;
 
-    line = line.match(exp.regex.line)[0];
+    line = line.match(exp.regex.line) ? line.match(exp.regex.line) : line;
 
     return [specID, jul, res, line];
 }
