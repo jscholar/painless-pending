@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Painless Pending</title>
 </head>
-<body>
+<body class="preload">
     <div class="container">
         <div class='top'>
             <h1>Painless Pending</h1>
@@ -28,11 +28,31 @@
             <div class="result">
                 <div class='result-text'></div>
                 <div class='filters'>
-                    <div class="filter-display">
+                    <div class="filters-jul">
+                        <div class="filters-label">
+                            Filters
+                        </div>
+                        <hr>
+                        <div class="filters-jul">
+                            <div>
+                                <span class="jul-label">From: </span>
+                                <input class="jul-input" type="number" placeholder="Julian Begin" id="jul-begin" min=1 max=365>
+                            </div>
 
+                            <div>
+                                <span class="jul-label">To: </span>
+                                <input class="jul-input" type="number" placeholder="Julian End" id="jul-end" min=1 max=365>
+                            </div>
+                            <div class="jul-days-line">
+                                    <span class="jul-label">Days: </span>
+                                    <input class="jul-input" type="number" placeholder="Default: 14" id="jul-range" min=0>
+                            </div>
+
+                            <button class="jul-apply">Apply</button>
+                        </div>
                     </div>
-                    <div class="filter-controller">
-
+                    <div class="filters-controller">
+                        
                     </div>
                 </div>
             </div>
@@ -41,9 +61,7 @@
                 <button class="updatePendingBtn">Update Pending</button>
         </div>
         <div class="log">
-                <h2>
-                    Log
-                </h2>
+                <h1>Log</h1>
             </div>
     </div>
 
