@@ -4,11 +4,11 @@
 
 import { genPendLine } from './models/Templates'
 
-export default function specHandler(spec, julRange) {
+export default function specHandler(spec, julRange, filters) {
     if (!julInRange(spec.jul, julRange.begin, julRange.end)) {
         return null;
     }
-    return createElement(spec, julRange);
+    return createElement(spec, filters);
 }
 
 const julInRange = (jul, julBegin, julEnd) => {
@@ -21,13 +21,16 @@ const julInRange = (jul, julBegin, julEnd) => {
     }
 }
 
-const createElement = (spec, rules) => {
+const createElement = (spec, filters) => {
     let newLine = document.createElement("span");
 
     let newText = document.createTextNode(
         genPendLine(spec.line, spec.res ? spec.res : '')
     );
     newLine.appendChild(newText);
+    if (!spec.res) {
+        newLine.style.backgroundColor = filters[0].color;
+    }
 
     return newLine;
 }
