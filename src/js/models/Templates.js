@@ -25,11 +25,3 @@ export const UITemplates = {
    N,      555-555-5555-0  55555555 PATIENT,PATIENT <?,??> ASDF | 1234
     `
 }
-
-export const currentJulDay = () => {
-    const now = new Date();
-    const start = new Date(now.getFullYear(), 0, 0);
-    const diff = now - start;
-    const oneDay = 1000 * 60 * 60 * 24;
-    return Math.floor(diff / oneDay);
-}
