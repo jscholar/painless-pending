@@ -1,4 +1,3 @@
-let output
 
 export const updatePending = (previousPending, currentPending) => {
     for (let wks in currentPending) {

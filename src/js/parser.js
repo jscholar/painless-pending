@@ -74,7 +74,6 @@ const parseLine = (line) => {
     const jul = specID.substring(0,3);
 
     let res = line.match(exp.regex.res);
-    console.log(res);
     res = res ? res[1] : null;
 
     line = line.match(exp.regex.line)[0];
