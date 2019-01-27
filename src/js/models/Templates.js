@@ -1,11 +1,35 @@
-export const Templates = {
-    genWKSHeader: function(date, wks, numSpec) {
+
+
+export const genWKSHeader = (date, wks, numSpec) => {
     return `${date}       WS # ${wks} &wksName - ${numSpec} Pending Build                   
     Status  Specimen #      Account# Patient Name <Sex/Age>
     ------  --------------  -------- ------------------------------`
-    },
+}
 
-    genPendLine: function(line, res) {
-        return `N,   ${line} ${res}`
-    }
+export const genPendLine = (line, res) => {
+    return `N,   ${line} ${res}`
+}
+
+export const UITemplates = {
+    inputPlaceHolder: 
+    `
+
+    
+
+   Example:
+
+    10-SEP-2018     WS # 5383 LESION HSV CULTURE/T - 2 Pending Build                
+    Status  Specimen #      Account# Patient Name <Sex/Age>
+   ------  --------------  -------- ------------------------------
+   N,      555-555-5555-0  55555555 PATIENT,PATIENT <?,??> ASDF | 1234
+   N,      555-555-5555-0  55555555 PATIENT,PATIENT <?,??> ASDF | 1234
+    `
+}
+
+export const currentJulDay = () => {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now - start;
+    const oneDay = 1000 * 60 * 60 * 24;
+    return Math.floor(diff / oneDay);
 }
