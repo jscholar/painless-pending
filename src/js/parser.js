@@ -12,10 +12,10 @@ let pendings = {
 let exp = {
     regex: {
         specID: /\d\d\d-\d\d\d-\d\d\d\d-\d/,
-        res: />(.+(\n*.*)*$)/,
+        res: />(.+\n*.*)(<.+$)?/,
         wks: /^\d\d\d\d(?!-|\d)/,
-        specBreak: /\n/,
-        line: /.+\w\/\d+>*/,
+        specBreak: /(?=(?:N,* +)*\d\d\d-\d\d\d-\d\d\d\d-\d)/g,
+        line: /.+\w\/\d+>?/,
         wksBreak: /.+WS #/,
     }
 }
@@ -47,6 +47,7 @@ const splitWS = (text) => {
          ws.split(exp.regex.specBreak)
         .map((line) => line.trim())
     )
+    console.log(text);
     return text;
     };
 
@@ -71,7 +72,7 @@ const parseLine = (line) => {
     .replace(/-/g, '');
 
     const jul = specID.substring(0,3);
-
+    console.log(line);
     let res = line.match(exp.regex.res);
     console.log(res);
     res = res ? res[1] : null;

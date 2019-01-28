@@ -7,7 +7,7 @@ export const genWKSHeader = (date, wks, numSpec) => {
 }
 
 export const genPendLine = (line, res) => {
-    return `${line} ${res}`
+    return `N,   ${line} ${res}`
 }
 
 export const UITemplates = {
