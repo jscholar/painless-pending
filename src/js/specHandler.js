@@ -14,10 +14,10 @@ export default function specHandler(spec, julRange, filters) {
 const julInRange = (jul, julBegin, julEnd) => {
     if (!julBegin || !julEnd) {
         return true;
-    } else if (julEnd > julBegin) {
+    } else if (julEnd >= julBegin) {
         return (jul >= julBegin && jul <= julEnd)
-    } else if (julEnd <= julBegin) {
-        return (jul > julBegin) || (jul < julEnd)
+    } else if (julEnd < julBegin) {
+        return (jul >= julBegin) || (jul <= julEnd)
     }
 }
 
@@ -34,3 +34,8 @@ const createElement = (spec, filters) => {
 
     return newLine;
 }
+
+
+/* } else if (julBegin === julEnd) {
+    console.log('same juldate, return true')
+    return (jul === julBegin); */

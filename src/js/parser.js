@@ -71,7 +71,7 @@ const parseLine = (line) => {
     const specID = line.match(exp.regex.specID)[0]
     .replace(/-/g, '');
 
-    const jul = specID.substring(0,3);
+    const jul = parseInt(specID.substring(0,3));
     console.log(line);
     let res = line.match(exp.regex.res);
     console.log(res);
