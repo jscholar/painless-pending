@@ -14,7 +14,7 @@ let exp = {
         specID: /\d\d\d-\d\d\d-\d\d\d\d-\d/,
         res: />(.+(\n*.*)*$)/,
         wks: /^\d\d\d\d(?!-|\d)/,
-        specBreak: /\nN,   /,
+        specBreak: /\n/,
         line: /.+\w\/\d+>*/,
         wksBreak: /.+WS #/,
     }
