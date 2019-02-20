@@ -88,7 +88,7 @@ body {
     width: 60%;
 }
 
-.filters {
+.config {
     position: absolute;
     top: 50px;
     right: 50px;
@@ -103,11 +103,11 @@ body {
     transition: 0.2s;
 }
 
-.filters:hover {
+.config:hover {
     opacity: 1.0;
 }
 
-.filters-label {
+.config-label {
     text-align: center;
     font-size: 1.4em;
 }
@@ -116,7 +116,7 @@ hr {
     margin-bottom: 10px;
 }
 
-.filters-jul {
+.config-jul {
     align-content: center;
 }
 
