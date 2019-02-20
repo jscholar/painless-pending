@@ -4,7 +4,9 @@
 
 import './css/style.css'
 import  specHandler from './js/specHandler'
-import { elements, readInput, copyResults, initUI, invalidInput, getJulianInput, clearResultsDisplay, printWKSHeader, printPendingLine, updateJulDisplay } from './js/UIcontroller'
+import { initUI, elements } from './js/views/baseUI'
+import * as pendingView from './js/views/pendingView'
+import * as configView from './js/views/configView'
 import { buildPending } from './js/parser'
 import { updatePending } from './js/updater'
 import { currentJulDay, validJul} from './js/julianCalc'
@@ -19,33 +21,38 @@ let state = {
         end: null,
         days: 14
     },
-    filters: [
-        {
-            keyword: null,
-            color: '#DDDDDD'
+    config: {
+        'null': {
+            keyword: 'null',
+            backgroundColor: '#DDDDDD',
+            fontStyle: 'Italic',
+            color: 'red'
         }
-    ]
+    }
 }
 
 /*  Setup event handlers */
  {
      elements.updatePendingBtn.addEventListener('click', processText);
 
-     elements.julApply.addEventListener('click', displayResults);
+     // Re-render display upon change to config
+     elements.applyConfig.addEventListener('click', () => {
+         pendingView.displayPending();
+     });
 
      /** Additions, removals, or changes to any filter are bubbled up to filters element  */
-     elements.julFilters.addEventListener('change', updateJulianRange);
+     elements.julConfig.addEventListener('change', updateJulianRange);
 
      window.addEventListener("load", init);
  }
 
 function processText() {
-     [state.pending.prev, state.pending.curr] = [{}, {}];
+    [state.pending.prev, state.pending.curr] = [{}, {}];
+    pendingView.clearResultsDisplay();
 
     /* Get text from input */
-    let [oldText, newText] = readInput();
-
-    if (oldText.length && newText.length) {
+    let [oldText, newText] = pendingView.readInput();
+    if (newText.length > 0) {
 
         /* Get Pendings object */
         state.pending.prev = buildPending(oldText, 'previous');
@@ -55,37 +62,17 @@ function processText() {
         updatePending(state.pending);
 
     } else {
-        invalidInput();
+        pendingView.invalidInput();
     }
-
-    displayResults();
-
+    pendingView.displayPending(state.pending.curr, state.config);
 }
 
-function displayResults() {
-    clearResultsDisplay();
-
-    for (let wks in state.pending.curr) {
-
-        
-        printWKSHeader(wks, state.pending.curr[wks].length)
-
-        state.pending.curr[wks].forEach((spec) => {
-
-            const el = specHandler(spec, state.julRange, state.filters);
-
-            if (el) {
-                printPendingLine(el);
-            }
-        });
-    }
-}
 
 function updateJulianRange() {
-    const {begin, end} = {...getJulianInput()};
+    const {begin, end} = {...configView.getJulianInput()};
     state.julRange.begin = validJul(begin);
     state.julRange.end = validJul(end);
-    updateJulDisplay(state.julRange);
+    configView.updateJulDisplay(state.julRange);
 }
 
 function init() {
