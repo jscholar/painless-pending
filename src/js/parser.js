@@ -47,17 +47,17 @@ const splitWS = (text) => {
          ws.split(exp.regex.specBreak)
         .map((line) => line.trim())
     )
-    console.log(text);
     return text;
     };
 
 
 const addSpecs = (wks, specParams, type) => {
+    console.log(specParams);
     if (!(wks in pendings[type])) {
         pendings[type][wks] = [];
     }
     if (!pendings[type][wks].find((spec) => specParams[0] === spec.specID)) {
-        pendings[type][wks].push(new Specimen(...specParams, wks));
+        pendings[type][wks].push(new Specimen(specParams.line, specParams.specID, specParams.jul, specParams.res , wks));
     }
 
 }
@@ -72,14 +72,12 @@ const parseLine = (line) => {
     .replace(/-/g, '');
 
     const jul = parseInt(specID.substring(0,3));
-    console.log(line);
     let res = line.match(exp.regex.res);
-    console.log(res);
     res = res ? res[1] : null;
 
     line = line.match(exp.regex.line) ? line.match(exp.regex.line) : line;
 
-    return [specID, jul, res, line];
+    return {specID: specID, jul: jul, res: res, line: line};
 }
 
 const clearPendings = () => {

@@ -1,5 +1,3 @@
-
-
 export const genWKSHeader = (date, wks, numSpec) => {
     return `${date}       WS # ${wks} &wksName - ${numSpec} Pending Build                   
     Status  Specimen #      Account# Patient Name <Sex/Age>
