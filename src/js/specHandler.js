@@ -34,8 +34,3 @@ const createElement = (spec, filters) => {
 
     return newLine;
 }
-
-
-/* } else if (julBegin === julEnd) {
-    console.log('same juldate, return true')
-    return (jul === julBegin); */
