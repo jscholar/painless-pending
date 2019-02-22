@@ -25,3 +25,14 @@ const fillBegin = () => {
     rules.juleRange.end - rules.juleRange.days;
 }
 
+function updateJulianRange() {
+    const {
+        begin,
+        end
+    } = {
+        ...configView.getJulianInput()
+    };
+    state.julRange.begin = validJul(begin);
+    state.julRange.end = validJul(end);
+    configView.updateJulDisplay(state.julRange);
+}

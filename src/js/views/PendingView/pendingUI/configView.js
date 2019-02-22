@@ -1,4 +1,4 @@
-import { elements } from './baseUI'
+import { elements } from '../Elements'
 
 export const updateJulDisplay = (julRange) => {
     formatJul(elements.julBeginInput, julRange.begin);

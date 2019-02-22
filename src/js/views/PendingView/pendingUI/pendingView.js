@@ -1,4 +1,4 @@
-import {elements} from './baseUI'
+import {elements} from '../baseUI'
 import { genPendLine, genWKSHeader } from './../models/Templates'
 
 export const readInput = () => {

@@ -1,10 +1,5 @@
-import { genWKSHeader, UITemplates } from '../models/Templates'
-import { updateJulDisplay} from './configView'
 
-/** Highlighting rules */
-
-
-export const elements = {
+const Elements = {
     inputPrevious: document.querySelector('.prev-text'),
     inputCurrent: document.querySelector('.curr-text'),
     result: document.querySelector('.result-text'),
@@ -17,12 +12,4 @@ export const elements = {
     applyConfig: document.querySelector('.config-apply')
 }
 
-export const initUI = (julRange) => {
-    document.querySelector('body').classList.remove("preload");
-    elements.inputPrevious.placeholder += UITemplates.inputPlaceHolder;
-    updateJulDisplay(julRange);
-}
-
-/**  Returns value of pending inputs 
- *   Output: [oldtext, newtext]
-*/
+export default Elements;

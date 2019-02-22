@@ -3,12 +3,8 @@
  *  NOT guaranteed to work with any other format.
  */
 
-import { Specimen } from './models/Specimen'
+// import { Specimen } from '../../models/Specimen'
 
-let pendings = {
-    previous: {},
-    current: {},
-}
 let exp = {
     regex: {
         specID: /\d\d\d-\d\d\d-\d\d\d\d-\d/,
@@ -20,9 +16,11 @@ let exp = {
     }
 }
 
-
-export const buildPending = (text, type) => {
-    clearPendings();
+/**
+ * 
+ * @param {string} text Standard format pending list 
+ */
+const buildPending = (text) => {
     let wksList = splitWS(text);
     wksList.forEach((list) => {
 
@@ -35,7 +33,6 @@ export const buildPending = (text, type) => {
         });
     })
 
-    return pendings[type];
 }
 
 /** Splits raw text into WS's
@@ -59,7 +56,6 @@ const addSpecs = (wks, specParams, type) => {
     if (!pendings[type][wks].find((spec) => specParams[0] === spec.specID)) {
         pendings[type][wks].push(new Specimen(specParams.line, specParams.specID, specParams.jul, specParams.res , wks));
     }
-
 }
 
 /** Returns Specimen Parameters as [specID, jul, resolution, line] */
@@ -84,3 +80,5 @@ const clearPendings = () => {
     pendings.current = {};
     pendings.previous = {};
 }
+
+export default buildPending;
