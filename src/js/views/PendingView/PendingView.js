@@ -1,9 +1,6 @@
 
-import Elements from '../Elements'
 
-import PendingTemplate from './Template/PendingTemplate'
-
-import processText from './InputProcessor/processText'
+import InputProcessor from './InputProcessor/InputProcessor'
 import InitUI from './pendingUI/InitUI'
 
 
@@ -11,14 +8,11 @@ import InitUI from './pendingUI/InitUI'
  * Testing jsdocs
  */
 function init() {
-    {
-        Elements.pendingContainer.innerHTML = PendingTemplate;
-    }
     return;
 }
 
 function buildUpdatedPending() {
-    const prevPendingList = processText(Elements.inputPrevious.value);
+    return
 }
 
 const PendingView = {
