@@ -23,8 +23,9 @@ body {
     text-align: center;
 }
 
-.pending-container {
-    height: 70%;
+
+.pending {
+    height: 90%;
     margin: 10px;
     display: block;
 }

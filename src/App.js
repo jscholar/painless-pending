@@ -3,21 +3,13 @@
  */
 
 
-import PendingView from './js/views/PendingView/PendingView';
+import PendingComponent from './js/views/PendingComponent/PendingComponent';
 import HelpSection from './js/views/HelpView/HelpView';
 
-import Elements from './js/views/Elements';
 
 const App = () => {
-
-
-    // Setup Event Handlers
-    {
-        
-    }
-
-
-    PendingView.init();
+    
+    PendingComponent.init();
 
 }
 

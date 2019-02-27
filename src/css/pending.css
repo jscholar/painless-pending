@@ -2,7 +2,7 @@
     white-space: nowrap;
     outline: black 1px solid; /*1px; For Development Purposes*/
     display: flex;
-    height: 100%;
+    height: 80%;
 }
 
 .input {

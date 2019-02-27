@@ -20,17 +20,3 @@ const julInRange = (jul, julBegin, julEnd) => {
         return (jul >= julBegin) || (jul <= julEnd)
     }
 }
-
-const createElement = (spec, filters) => {
-    let newLine = document.createElement("span");
-
-    let newText = document.createTextNode(
-        genPendLine(spec.line, spec.res ? spec.res : '')
-    );
-    newLine.appendChild(newText);
-    if (!spec.res) {
-        newLine.style.backgroundColor = filters[0].color;
-    }
-
-    return newLine;
-}
